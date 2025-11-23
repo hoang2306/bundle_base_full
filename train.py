@@ -126,7 +126,7 @@ def main():
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     conf["device"] = device
 
-    setup_seed(conf["seed"])
+    # setup_seed(conf["seed"])
 
     dataset = Datasets(conf)
     conf["num_users"] = dataset.num_users
@@ -204,7 +204,7 @@ def main():
 
     best_metrics, best_perform = init_best_metrics(conf)
     best_epoch = 0
-    setup_seed(conf["seed"])
+    # setup_seed(conf["seed"])
 
     # set up wandb 
     if conf['wandb_run_name'] != "":
