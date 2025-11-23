@@ -105,6 +105,8 @@ def get_cmd():
     # use item pre-trained embedding
     parser.add_argument('--use_item_pretrained', action='store_true', help='whether to use item pretrained embedding')
     
+    # use full loss
+    parser.add_argument('--use_full_loss', action='store_true', help='whether to use full loss')
 
     args = parser.parse_args()
     return args
