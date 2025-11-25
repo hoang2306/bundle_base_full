@@ -46,7 +46,8 @@ class HyperGraph(nn.Module):
         self.embedding_size = 64
         self.component = ["mm"]
         
-        self.sigmoid = conf["sigmoid"]
+        # self.sigmoid = conf["sigmoid"]
+        self.sigmoid = False
 
         if "id" in self.component:
             self.item_embeddings = nn.Parameter(torch.FloatTensor(self.num_item, self.embedding_size))
