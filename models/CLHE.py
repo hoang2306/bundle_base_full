@@ -141,9 +141,10 @@ class HierachicalEncoder(nn.Module):
         features.append(self.item_embeddings)
 
         if self.conf['use_item_pretrained']:
-            cf_feature_full = self.cf_transformation(self.cf_feature)
-            cf_feature_full[self.cold_indices_cf] = mm_feature_full[self.cold_indices_cf]
-            features.append(cf_feature_full)
+            # cf_feature_full = self.cf_transformation(self.cf_feature)
+            # cf_feature_full[self.cold_indices_cf] = mm_feature_full[self.cold_indices_cf]
+            # features.append(cf_feature_full)
+            features.append(mm_feature_full)
 
         features = torch.stack(features, dim=-2)  # [bs, #modality, d]
 
@@ -172,10 +173,11 @@ class HierachicalEncoder(nn.Module):
         features.append(bi_feature)
 
         if self.conf['use_item_pretrained']:
-            cf_feature_full = self.cf_transformation(self.cf_feature)
-            cf_feature_full[self.cold_indices_cf] = mm_feature_full[self.cold_indices_cf]
-            cf_feature = cf_feature_full[seq_modify]
-            features.append(cf_feature)
+            # cf_feature_full = self.cf_transformation(self.cf_feature)
+            # cf_feature_full[self.cold_indices_cf] = mm_feature_full[self.cold_indices_cf]
+            # cf_feature = cf_feature_full[seq_modify]
+            # features.append(cf_feature)
+            features.append(mm_feature)
 
         features = torch.stack(features, dim=-2)  # [bs, n_token, #modality, d]
         bs, n_token, N_modal, d = features.shape
@@ -199,10 +201,11 @@ class HierachicalEncoder(nn.Module):
         features.append(self.item_embeddings)
 
         if self.conf['use_item_pretrained']:
-            cf_feature_full = self.cf_transformation(self.cf_feature)
-            cf_feature_full[self.cold_indices_cf] = mm_feature_full[self.cold_indices_cf]
-            features.append(cf_feature_full)
-
+            # cf_feature_full = self.cf_transformation(self.cf_feature)
+            # cf_feature_full[self.cold_indices_cf] = mm_feature_full[self.cold_indices_cf]
+            # features.append(cf_feature_full)
+            features.append(mm_feature_full)
+            
         features = torch.stack(features, dim=-2)  # [bs, #modality, d]
         size = features.shape[:2]  # (bs, #modality)
 
