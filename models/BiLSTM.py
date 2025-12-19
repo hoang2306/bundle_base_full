@@ -31,7 +31,8 @@ class BiLSTM(nn.Module):
         self.num_item = self.conf["num_items"]
         self.embedding_size = 64
         self.component = ["mm"] 
-        self.sigmoid = conf["sigmoid"]
+        # self.sigmoid = conf["sigmoid"]
+        self.sigmoid = True 
 
         if "id" in self.component:
             self.item_embeddings = nn.Parameter(torch.FloatTensor(self.num_item, self.embedding_size))
